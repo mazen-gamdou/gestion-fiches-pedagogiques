@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ student.nom }} {{ student.prenom }}{% endblock %}
+
+{% block body %}
+    <h1 class="mt-4 mb-4 h2"><center>Fiche étudiant</center></h1>
+<div class="container">
+    <table class="table table-hover text-center">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ student.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ student.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ student.prenom }}</td>
+            </tr>
+            <tr>
+                <th>N° Etudiant</th>
+                <td>{{ student.numEtudiant }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{{ student.birthday ? student.birthday|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ student.adresse }}</td>
+            </tr>
+            <tr>
+                <th>N° Téléphone</th>
+                <td>{{ student.telephone }}</td>
+            </tr>
+            <tr>
+                <th>N° Portable</th>
+                <td>{{ student.portable }}</td>
+            </tr>
+            <tr>
+                <th>Adresse Email</th>
+                <td>{{ student.email }}</td>
+            </tr>
+            <tr>
+                <th>Adresse Postal</th>
+                <td>{{ student.adressePostal }}</td>
+            </tr>
+            <tr>
+                <th>Regime special d'étude</th>
+                <td>{{ student.regimespecialetude }}</td>
+            </tr>
+            <tr>
+                <th>Type contrôle choisi</th>
+                <td>{{ student.typecontrole }}</td>
+            </tr>
+            <tr>
+                <th>Redoublant</th>
+                <td>{{ student.redoublant }}</td>
+            </tr>
+            <tr>
+                <th>Semestre obtenu</th>
+                <td>{{ student.semestreobtenu }}</td>
+            </tr>
+            <tr>
+                <th>Demande de 1/3 temps</th>
+                <td>{{ student.demandetemps }}</td>
+            </tr>
+
+            <tr>
+                <th>Parcours</th>
+                <td>{{ student.parcours }}</td>
+            </tr>
+            <tr>
+                <th>Semestre</th>
+                <td>{{ student.semestre }}</td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <h1 class="text-center h2 mt-4 mb-4">Modules</h1>
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Module</th>
+                <th>Inscription</th>
+                <th>Validé/Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, note in student.module['note'] %}
+                <tr>
+                    <td>{{module[ key ] }} </td>
+                    <td>{{ student.module['inscription'][key] }}</td>
+                    <td>{{note}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<div class="row mb-4 mt-4">
+    <div class="col-10">
+        <a href="{{ path('student_index') }}" class="btn btn-primary">Retour à la liste</a>
+    </div>
+    <div class="col-2">
+        {% if student.valide == 1 %}
+            <a href="#" class="btn btn-success" onclick="window.print();">Imprimer</a>
+        {% endif %}
+    </div>
+</div>
+
+
+   
+    
+    </div>
+{% endblock %}

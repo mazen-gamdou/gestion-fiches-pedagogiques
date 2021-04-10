@@ -1,0 +1,94 @@
+{{ form_start(form) }}
+	{{ form_widget(form) }}
+
+	<div id="module_table">
+		{% for key, module in modules %}
+			<table class="table table-bordered module_table_form" id="{{key}}" style="display:none;">
+				<thead>
+					<tr>
+						<th>Module</th>
+						<th>Inscription</th>
+						<th>Validé/Note</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for key_mod, item_module in module %}
+						<tr>
+							<td>{{item_module}}</td>
+							<td>
+								<select class="form-control" name="module[{{key}}][inscription][{{key_mod}}]">
+									<option value="Oui">Oui</option>
+									<option value="Non">Non</option>
+								</select>
+							</td>
+							<td><input class="form-control" type="text" name="module[{{key}}][note][{{key_mod}}]"></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endfor %}
+	</div>
+	<input type="hidden" name="parcours_semestre" id="parcours_semestre">
+	<div class="d-flex justify-content-center">
+		<button class="btn btn-primary mb-4 mt-4">{{ button_label|default('Save') }}</button>
+	</div>
+{{ form_end(form) }}
+
+<style type="text/css">
+#student_semestre{
+	display: none;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$('#student_parcours').change(function(){
+	$('.module_table_form').hide();
+	$('#student_semestre').val('');
+	let student_parcours = $(this).val();
+	if (student_parcours == '') {
+		$('#student_semestre').hide();
+	}
+	else{
+		$('#student_semestre').show();
+	}
+});
+
+$('#student_semestre').change(function(){
+	$('#module_table').show();
+	let student_semestre = $(this).val();
+	let student_parcours = $('#student_parcours').val();
+	if(student_semestre == '5'){
+		if (student_parcours =='INGENIERIE INFORMATIQUE') {
+			$('.module_table_form').hide();
+			$('#ing-inf-5').show();
+			$('#parcours_semestre').val('ing-inf-5');
+		}
+		else if (student_parcours =='MIAGE') {
+			$('.module_table_form').hide();
+			$('#miage-5').show();
+			$('#parcours_semestre').val('miage-5');
+		}
+	}
+	else if(student_semestre == '6'){
+		if (student_parcours =='INGENIERIE INFORMATIQUE') {
+			$('.module_table_form').hide();
+			$('#ing-inf-6').show();
+			$('#parcours_semestre').val('ing-inf-6');
+		}
+		else if (student_parcours =='MIAGE') {
+			$('.module_table_form').hide();
+			$('#miage-6').show();
+			$('#parcours_semestre').val('miage-6');
+		}
+	}
+	else if(student_semestre == ''){
+		$('.module_table_form').hide();
+	}
+
+});
+
+
+
+</script>

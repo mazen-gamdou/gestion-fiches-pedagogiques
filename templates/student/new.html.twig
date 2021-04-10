@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+	<div class="container">
+	    <h1><center>Veuillez remplir ce formulaire</center></h1>
+	    {{ include('student/_form.html.twig') }}
+	</div>
+    
+
+   <style type="text/css">
+   	label, legend{
+   		font-weight: bold;
+   	}
+
+   </style>
+{% endblock %}

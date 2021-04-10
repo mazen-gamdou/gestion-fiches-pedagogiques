@@ -1,0 +1,2 @@
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `is_verified`, `name`) VALUES
+('admin@admin.com', '[\"ROLE_RESPONSABLE\"]', '$argon2id$v=19$m=65536,t=4,p=1$TU1HQkRtSlkuZkhLMzZUVg$W4A3UmjKLSlS47e/jDvPe4h21cilLBzkEptkLMv2KDk', 0, 'Responsalbe');
